@@ -78,8 +78,8 @@ wget https://tinyurl.com/yynxx6bs -O /target/home/oem/install.txt; \
 #Copy network config to /target  -- 
 cp /etc/resolv.conf /target/etc/resolv.conf; \
 chroot /target sh /home/oem/install.txt; \
-chroot /target apt update; \
-chroot /target apt full-upgrade
+chroot /target apt-get update; \
+chroot /target apt-get -y full-upgrade
 
 #Preseed questions asked in the install script
 #I think these might be required so that the install script does not stall on user selected options (keyboard and libssl)
