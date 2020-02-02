@@ -30,7 +30,19 @@ One of The Debian Project's most powerful features is the ability to customize a
 * [Partition disks] Which disk?
 * [Partition disks] Write changes?
 
-
+## Using the Linux Mint 19.1 Preseed on a USB drive
+* Create a normal linuxmint USB drive or use one that already works
+* Open the contents of the usb drive
+* You will find a file 'linuxmint.seed' in the preseed folder; Replace /preseed/linuxmint.seed with the linuxmint.seed in this git repository.
+* Open the /isolinux/isolinux.cfg in your USB drive with you test editor of choice
+* In this file look at the part that says 'label oem'. Indented under it is a line that starts with 'append'. Look for for 'only-ubiquity' in this line and change it to 'automatic-ubiquity'. It should look like this:
+```
+label oem
+  menu label OEM install (for manufacturers)
+  kernel /casper/vmlinuz
+  append file=/cdrom/preseed/linuxmint.seed oem-config/enable=true automatic-ubiquity boot=casper initrd=/casper/initrd.lz quiet splash --
+ ```
+* Save the file and test if the USB stick works. It should take a while. Make sure you are connected to the internet!!
 ## Online Resources
 * [Debian Installer](http://wiki.debian.org/DebianInstaller/)
 * https://help.ubuntu.com/12.04/installation-guide/i386/preseed-intro.html
